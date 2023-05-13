@@ -5,3 +5,11 @@
     margin: 10px;
     display: inline-block;
   }
+/*cards with this class cannot be clicked*/
+  .flipped{
+    pointer-events: none;
+  }
+/*cards with this class cannot be clicked*/
+  .match{
+    pointer-events: none;
+  }

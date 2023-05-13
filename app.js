@@ -91,33 +91,33 @@ function addMatchClass(){
 function handleCardClick(event) {
   let card = event.target;
   let color = card.getAttribute('class'); 
-  let matchedCards = document.getElementsByClassName('match');
- 
+  let matchedCards = document.getElementsByClassName('match'); 
 
 if( count < flipLimit ){
   count ++;
   colorArr.push(color)
-  console.log('count', count,colorArr)
   event.target.classList.add('flipped')
   card.style.backgroundColor = color
   if (count == flipLimit){
     turnCount ++
-    console.log(turnCount)
     if( colorArr[0] != colorArr[1]){
-      console.log('not a match', colorArr)
       setTimeout(function() {
         removeCardColor()
         resetCountFlippedColorArr()
+        document.getElementById("matchIndicator").innerHTML = "NOT A MATCH!"
     }, 500);
     } else {
-      console.log('match', colorArr)
       addMatchClass()
       resetCountFlippedColorArr()
+      flippedCards.disabled = true
+      document.getElementById("matchIndicator").innerHTML = "MATCH!"
   }
 }
-  if(matchedCards.length === 10){
-    alert(`Good Game! It took you ${turnCount} tries`)
-  }
+if(matchedCards.length < 10){
+  document.getElementById("totalTries").innerHTML = `Total Attempts: ${turnCount}`;
+} else {
+  document.getElementById("matchIndicator").innerHTML = `Winner! It took you ${turnCount} tries!`
+}
 }
 };
 
